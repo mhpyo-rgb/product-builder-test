@@ -8,6 +8,18 @@
     --primary-glow-color: rgba(76, 175, 80, 0.7);
     --lotto-ball-color: #fff;
     --lotto-text-color: #333;
+    --bg-pattern-color: rgba(255, 255, 255, 0.05);
+}
+
+body.light-mode {
+    --main-bg-color: #f0f2f5;
+    --container-bg-color: #ffffff;
+    --text-color: #333;
+    --primary-color: #2e7d32;
+    --primary-glow-color: rgba(46, 125, 50, 0.3);
+    --lotto-ball-color: #4CAF50;
+    --lotto-text-color: #fff;
+    --bg-pattern-color: rgba(0, 0, 0, 0.05);
 }
 
 body {
@@ -16,10 +28,35 @@ body {
     background-color: var(--main-bg-color);
     color: var(--text-color);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><g fill-opacity="0.05" fill="%23fff"><rect x="50" width="50" height="50"/><rect y="50" width="50" height="50"/></g></svg>');
+    transition: background-color 0.3s, color 0.3s;
+    background-image: radial-gradient(var(--bg-pattern-color) 2px, transparent 2px);
+    background-size: 30px 30px;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#theme-btn {
+    background: none;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+#theme-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--text-color);
 }
 
 .container {

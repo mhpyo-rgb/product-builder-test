@@ -1,5 +1,21 @@
 const lottoDisplay = document.querySelector(".lotto-display");
 const generateBtn = document.querySelector("#generate-btn");
+const themeBtn = document.querySelector("#theme-btn");
+const body = document.body;
+
+// Theme logic
+const currentTheme = localStorage.getItem("theme");
+if (currentTheme === "light") {
+    body.classList.add("light-mode");
+    themeBtn.textContent = "Dark Mode";
+}
+
+themeBtn.addEventListener("click", () => {
+    body.classList.toggle("light-mode");
+    const isLight = body.classList.contains("light-mode");
+    localStorage.setItem("theme", isLight ? "light" : "dark");
+    themeBtn.textContent = isLight ? "Dark Mode" : "Light Mode";
+});
 
 generateBtn.addEventListener("click", () => {
     generateLottoNumbers();
