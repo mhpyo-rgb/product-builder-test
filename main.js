@@ -4,17 +4,17 @@ const themeBtn = document.querySelector("#theme-btn");
 const body = document.body;
 
 // Theme logic
-const currentTheme = localStorage.getItem("theme");
-if (currentTheme === "light") {
+const savedTheme = localStorage.getItem("theme") || "light";
+if (savedTheme === "dark") {
+    body.classList.remove("light-mode");
+} else {
     body.classList.add("light-mode");
-    themeBtn.textContent = "Dark Mode";
 }
 
 themeBtn.addEventListener("click", () => {
     body.classList.toggle("light-mode");
     const isLight = body.classList.contains("light-mode");
     localStorage.setItem("theme", isLight ? "light" : "dark");
-    themeBtn.textContent = isLight ? "Dark Mode" : "Light Mode";
 });
 
 generateBtn.addEventListener("click", () => {
@@ -34,10 +34,12 @@ function generateLottoNumbers() {
 
 function displayLottoNumbers(numbers) {
     lottoDisplay.innerHTML = "";
-    for (const number of numbers) {
+    numbers.forEach((number, index) => {
         const lottoBall = document.createElement("div");
         lottoBall.classList.add("lotto-ball");
         lottoBall.textContent = number;
+        // Staggered animation
+        lottoBall.style.animationDelay = `${index * 0.1}s`;
         lottoDisplay.appendChild(lottoBall);
-    }
+    });
 }
